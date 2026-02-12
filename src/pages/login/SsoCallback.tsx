@@ -5,6 +5,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Spin, App } from 'antd';
 import { ssoLogin, getUserInfo, getUserMenus } from '@/api/modules/auth';
 import { useUserStore, useMenuStore } from '@/store';
+// @ts-ignore
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { UserInfo, MenuResponse, LoginResult } from '@/types/api';
 
