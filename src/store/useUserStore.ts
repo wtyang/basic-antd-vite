@@ -6,8 +6,7 @@ import type { UserInfo } from '@/types/api';
 import {
   getToken,
   setToken,
-  // @ts-ignore
-  removeToken,
+  removeToken, // eslint-disable-line @typescript-eslint/no-unused-vars
   setRefreshToken,
   clearAuth,
 } from '@/utils/auth';

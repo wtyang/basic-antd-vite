@@ -1,15 +1,15 @@
 // 前端缓存更新检测
 
-import { notification } from 'antd'
+import { notification } from 'antd';
 
 interface VersionCheckOptions {
-  interval?: number
-  immediate?: boolean
-  onUpdate?: () => void
+  interval?: number;
+  immediate?: boolean;
+  onUpdate?: () => void;
 }
 
-let currentVersion: string | null = null
-let checkTimer: ReturnType<typeof setInterval> | null = null
+let currentVersion: string | null = null;
+let checkTimer: ReturnType<typeof setInterval> | null = null;
 
 /**
  * 检查服务端版本
@@ -18,22 +18,22 @@ async function checkVersion(onUpdate?: () => void): Promise<void> {
   try {
     const response = await fetch(`/version.json?t=${Date.now()}`, {
       cache: 'no-cache',
-    })
-    if (!response.ok) return
+    });
+    if (!response.ok) return;
 
-    const data = await response.json()
-    const serverVersion = data.version as string
+    const data = await response.json();
+    const serverVersion = data.version as string;
 
     if (!currentVersion) {
       // 首次记录版本号
-      currentVersion = serverVersion
-      return
+      currentVersion = serverVersion;
+      return;
     }
 
     if (currentVersion !== serverVersion) {
       // 发现新版本
       if (onUpdate) {
-        onUpdate()
+        onUpdate();
       } else {
         notification.info({
           message: '发现新版本',
@@ -42,9 +42,9 @@ async function checkVersion(onUpdate?: () => void): Promise<void> {
           btn: undefined,
           key: 'version-update',
           onClick: () => {
-            window.location.reload()
+            window.location.reload();
           },
-        })
+        });
       }
     }
   } catch {
@@ -56,18 +56,18 @@ async function checkVersion(onUpdate?: () => void): Promise<void> {
  * 启动版本检测轮询
  */
 export function startVersionCheck(options: VersionCheckOptions = {}): void {
-  const { interval = 5 * 60 * 1000, immediate = true, onUpdate } = options
+  const { interval = 5 * 60 * 1000, immediate = true, onUpdate } = options;
 
   // 避免重复启动
-  if (checkTimer) return
+  if (checkTimer) return;
 
   if (immediate) {
-    checkVersion(onUpdate)
+    checkVersion(onUpdate);
   }
 
   checkTimer = setInterval(() => {
-    checkVersion(onUpdate)
-  }, interval)
+    checkVersion(onUpdate);
+  }, interval);
 }
 
 /**
@@ -75,7 +75,7 @@ export function startVersionCheck(options: VersionCheckOptions = {}): void {
  */
 export function stopVersionCheck(): void {
   if (checkTimer) {
-    clearInterval(checkTimer)
-    checkTimer = null
+    clearInterval(checkTimer);
+    checkTimer = null;
   }
 }

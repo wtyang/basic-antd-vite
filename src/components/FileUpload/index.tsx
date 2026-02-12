@@ -1,15 +1,15 @@
-import React from 'react'
-import { Upload, message } from 'antd'
-import { InboxOutlined } from '@ant-design/icons'
-import type { UploadProps, UploadFile } from 'antd'
+import React from 'react';
+import { Upload, message } from 'antd';
+import { InboxOutlined } from '@ant-design/icons';
+import type { UploadProps, UploadFile } from 'antd';
 
-const { Dragger } = Upload
+const { Dragger } = Upload;
 
 interface FileUploadProps extends Omit<UploadProps, 'onChange'> {
-  value?: UploadFile[]
-  onChange?: (fileList: UploadFile[]) => void
-  maxSize?: number // MB
-  acceptMsg?: string
+  value?: UploadFile[];
+  onChange?: (fileList: UploadFile[]) => void;
+  maxSize?: number; // MB
+  acceptMsg?: string;
 }
 
 const FileUpload: React.FC<FileUploadProps> = ({
@@ -24,18 +24,18 @@ const FileUpload: React.FC<FileUploadProps> = ({
     multiple: true,
     fileList: value,
     beforeUpload: (file) => {
-      const isLtLimit = file.size / 1024 / 1024 < maxSize
+      const isLtLimit = file.size / 1024 / 1024 < maxSize;
       if (!isLtLimit) {
-        message.error(`文件必须小于 ${maxSize}MB!`)
+        message.error(`文件必须小于 ${maxSize}MB!`);
       }
-      return isLtLimit || Upload.LIST_IGNORE
+      return isLtLimit || Upload.LIST_IGNORE;
     },
     onChange: (info) => {
-      const { fileList } = info
-      onChange?.(fileList)
+      const { fileList } = info;
+      onChange?.(fileList);
     },
     ...rest,
-  }
+  };
 
   return (
     <div style={{ width: '100%' }}>
@@ -49,7 +49,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
         </p>
       </Dragger>
     </div>
-  )
-}
+  );
+};
 
-export default FileUpload
+export default FileUpload;

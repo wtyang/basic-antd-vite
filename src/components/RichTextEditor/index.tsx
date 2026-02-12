@@ -1,13 +1,13 @@
-import React from 'react'
-import { Input } from 'antd'
+import React from 'react';
+import { Input } from 'antd';
 
-const { TextArea } = Input
+const { TextArea } = Input;
 
 interface RichTextEditorProps {
-  value?: string
-  onChange?: (value: string) => void
-  placeholder?: string
-  height?: number
+  value?: string;
+  onChange?: (value: string) => void;
+  placeholder?: string;
+  height?: number;
 }
 
 /**
@@ -34,7 +34,7 @@ const RichTextEditor: React.FC<RichTextEditorProps> = ({
         💡 此处为富文本编辑器预留位置，可通过集成 Quill 或 TinyMCE 进行扩展。
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default RichTextEditor
+export default RichTextEditor;

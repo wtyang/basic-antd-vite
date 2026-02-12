@@ -1,11 +1,13 @@
 # 上传（Upload）复杂场景参考
 
 ## 适用场景边界
+
 - 受控文件列表、断点/自定义上传流程
 - 图片预览、拖拽上传、目录上传
 - 与业务接口深度整合（自定义请求、进度、鉴权）
 
 ## 推荐模式（1–2 种）
+
 - **受控与非受控**：
   - 使用 `defaultFileList` 进行非受控初始值。
   - 使用 `fileList` + `onChange` 完全受控。
@@ -13,6 +15,7 @@
 - **自定义请求**：使用 `customRequest` 接管默认 XHR 行为，可通过 `info.defaultRequest` 调用默认上传逻辑。
 
 ## 必须避免的反模式
+
 - 受控 `fileList` 不同步 `onChange`，导致 UI 与状态不一致。
 - `beforeUpload` 返回 `false` 后仍假定 `info.file` 结构固定。
 - 自定义上传不处理失败与重试路径。
@@ -47,6 +50,7 @@
 - **禁用状态一致性**：自定义 `Upload` 子元素时需要同步传递 `disabled`。
 
 ## 最小示例
+
 ```tsx
 const [fileList, setFileList] = useState([]);
 
@@ -60,6 +64,7 @@ const [fileList, setFileList] = useState([]);
 ```
 
 ## 与主 Skill 的回跳说明
+
 - 若问题只涉及“是否受控/是否 customRequest”，回到主 Skill 的组件选型规则。
 
 ## 参考文档

@@ -1,12 +1,12 @@
 // URL 解析/格式化工具
 
 interface ParsedUrl {
-  protocol: string
-  host: string
-  pathname: string
-  params: Record<string, string>
-  hash: string
-  origin: string
+  protocol: string;
+  host: string;
+  pathname: string;
+  params: Record<string, string>;
+  hash: string;
+  origin: string;
 }
 
 /**
@@ -14,11 +14,11 @@ interface ParsedUrl {
  */
 export function parseUrl(url: string): ParsedUrl {
   try {
-    const u = new URL(url, window.location.origin)
-    const params: Record<string, string> = {}
+    const u = new URL(url, window.location.origin);
+    const params: Record<string, string> = {};
     u.searchParams.forEach((value, key) => {
-      params[key] = value
-    })
+      params[key] = value;
+    });
     return {
       protocol: u.protocol,
       host: u.host,
@@ -26,7 +26,7 @@ export function parseUrl(url: string): ParsedUrl {
       params,
       hash: u.hash,
       origin: u.origin,
-    }
+    };
   } catch {
     return {
       protocol: '',
@@ -35,7 +35,7 @@ export function parseUrl(url: string): ParsedUrl {
       params: {},
       hash: '',
       origin: '',
-    }
+    };
   }
 }
 
@@ -46,15 +46,15 @@ export function appendParams(
   url: string,
   params: Record<string, string | number | boolean>,
 ): string {
-  const u = new URL(url, window.location.origin)
+  const u = new URL(url, window.location.origin);
   Object.entries(params).forEach(([key, value]) => {
-    u.searchParams.set(key, String(value))
-  })
+    u.searchParams.set(key, String(value));
+  });
   // 如果原始 URL 是相对路径，返回相对路径
   if (!url.startsWith('http')) {
-    return u.pathname + u.search + u.hash
+    return u.pathname + u.search + u.hash;
   }
-  return u.toString()
+  return u.toString();
 }
 
 /**
@@ -62,9 +62,9 @@ export function appendParams(
  */
 export function getUrlParam(url: string, key: string): string | null {
   try {
-    const u = new URL(url, window.location.origin)
-    return u.searchParams.get(key)
+    const u = new URL(url, window.location.origin);
+    return u.searchParams.get(key);
   } catch {
-    return null
+    return null;
   }
 }

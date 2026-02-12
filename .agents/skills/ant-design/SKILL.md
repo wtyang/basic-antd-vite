@@ -6,17 +6,20 @@ description: Ant Design ecosystem guidance covering antd 6.x, Ant Design Pro 5/P
 # Ant Design
 
 ## S - Scope
+
 - Target: antd@^6 with React 18-19, plus ant-design-pro@^5 / @ant-design/pro-components and @ant-design/x@^2 when applicable.
 - Cover: core components, theming/tokens, css-in-js, SSR, a11y, performance, Pro layouts/routing/access/CRUD, and X (AI/chat UI) patterns.
 - Avoid: undocumented APIs, internal `.ant-*` class coupling, or cross-version mixing without explicit request.
 
 ### Default assumptions (when not specified)
+
 - Language: TypeScript.
 - Styling: prefer tokens, `classNames`, and `styles`; avoid global overrides.
 - Provider: a single `ConfigProvider` at app root, unless isolation is required.
 - Dependencies: do not add new packages unless required or requested.
 
 ### Scope rules (must follow)
+
 - Use only officially documented antd APIs and patterns.
 - Do not invent props, events, or component names.
 - Use only officially documented Pro/X APIs and patterns.
@@ -29,6 +32,7 @@ description: Ant Design ecosystem guidance covering antd 6.x, Ant Design Pro 5/P
 - Route complex issues to `Reference` files; main skill gives only decisions and entry points.
 
 ### Complex triggers (must open a `Reference`)
+
 - More than 3 interaction states or cross-field linkage (Form).
 - Remote search, large data, or custom rendering (Select).
 - Server sorting/filtering/pagination, virtualization, fixed columns/headers (Table).
@@ -40,25 +44,27 @@ description: Ant Design ecosystem guidance covering antd 6.x, Ant Design Pro 5/P
 - X streaming, tool rendering, or Markdown extensions beyond the defaults.
 
 ### `Reference` index (Chinese)
-Topic | Description | `Reference`
---- | --- | ---
-Core v6 | Version scope, migration notes, theming/SSR overview | `references/antd-v6.md`
-Legacy v5 | Existing v5 projects and migration guardrails | `references/antd-v5.md`
-Form advanced | Dynamic forms, dependencies, validation perf | `references/form-advanced.md`
-Table advanced | Sorting/filtering/virtualization patterns | `references/table-advanced.md`
-Upload advanced | Controlled upload, customRequest, edge cases | `references/upload-advanced.md`
-Select advanced | Remote search, tags, rendering and a11y | `references/select-advanced.md`
-Tree advanced | Async load, checkStrictly, virtual | `references/tree-advanced.md`
-Pro v5 | Pro 5 scope and baseline guidance | `references/pro-v5.md`
-Pro layout | Layouts, menus, access, multi-layout patterns | `references/pro-layout-advanced.md`
-ProTable | Query/table coupling, request patterns, perf | `references/protable-advanced.md`
-ProForm | Step forms, dynamic fields, table linkage | `references/proform-advanced.md`
-X v2 | X v2 scope and baseline guidance | `references/x-v2.md`
-X components | Message/tool component patterns | `references/x-components-advanced.md`
-X SDK | Streaming integration and state model | `references/x-sdk-advanced.md`
-X Markdown | X Markdown extensions and rendering | `references/x-markdown-advanced.md`
+
+| Topic           | Description                                          | `Reference`                           |
+| --------------- | ---------------------------------------------------- | ------------------------------------- |
+| Core v6         | Version scope, migration notes, theming/SSR overview | `references/antd-v6.md`               |
+| Legacy v5       | Existing v5 projects and migration guardrails        | `references/antd-v5.md`               |
+| Form advanced   | Dynamic forms, dependencies, validation perf         | `references/form-advanced.md`         |
+| Table advanced  | Sorting/filtering/virtualization patterns            | `references/table-advanced.md`        |
+| Upload advanced | Controlled upload, customRequest, edge cases         | `references/upload-advanced.md`       |
+| Select advanced | Remote search, tags, rendering and a11y              | `references/select-advanced.md`       |
+| Tree advanced   | Async load, checkStrictly, virtual                   | `references/tree-advanced.md`         |
+| Pro v5          | Pro 5 scope and baseline guidance                    | `references/pro-v5.md`                |
+| Pro layout      | Layouts, menus, access, multi-layout patterns        | `references/pro-layout-advanced.md`   |
+| ProTable        | Query/table coupling, request patterns, perf         | `references/protable-advanced.md`     |
+| ProForm         | Step forms, dynamic fields, table linkage            | `references/proform-advanced.md`      |
+| X v2            | X v2 scope and baseline guidance                     | `references/x-v2.md`                  |
+| X components    | Message/tool component patterns                      | `references/x-components-advanced.md` |
+| X SDK           | Streaming integration and state model                | `references/x-sdk-advanced.md`        |
+| X Markdown      | X Markdown extensions and rendering                  | `references/x-markdown-advanced.md`   |
 
 ### Reference routing rule
+
 - Do not expand advanced topics in the main skill.
 - Jump to a `Reference` if any condition matches:
   - More than 3 interaction states.
@@ -67,11 +73,14 @@ X Markdown | X Markdown extensions and rendering | `references/x-markdown-advanc
   - Complex accessibility requirements.
 
 ## P - Process
+
 ### 1) Identify the layer first
+
 - Core antd UI, Pro admin app, or X chat/agent UI?
 - If Pro or X is involved, route to the relevant `Reference` when complexity triggers match.
 
 ### 2) Clarify context before advising
+
 - Framework and rendering: Next.js / Umi / Vite? CSR / SSR / streaming?
 - antd version: confirm v6 if unclear.
 - Theming depth: small token changes or component-level overrides?
@@ -79,11 +88,13 @@ X Markdown | X Markdown extensions and rendering | `references/x-markdown-advanc
 - Interaction complexity: controlled state, linkage, async, auth, upload flows?
 
 ### 3) Provider minimal set
+
 - CSR: usually `ConfigProvider` only.
 - SSR or strict style order: add `StyleProvider` as per `references/antd-v6.md`.
 - One app, one root provider; local themes only for isolation needs.
 
 ### 4) Component selection rules (core antd)
+
 - Form: prefer `Form` as source of truth unless external state is required.
 - Overlay: `Modal` for blocking flows; `Drawer` for side context or long content.
 - Lists: structured data uses `Table`, light lists use `List`; `Table` needs stable `rowKey`.
@@ -92,30 +103,37 @@ X Markdown | X Markdown extensions and rendering | `references/x-markdown-advanc
 - Upload: controlled flow uses `fileList`; complex flow uses `customRequest` (see `references/upload-advanced.md`).
 
 ### 5) Pro decision shortcuts (when Pro is in scope)
+
 - Routes are the menu source of truth; avoid hand-built menus.
 - Access control is page-first; UI hides are secondary; backend still enforces.
 - CRUD uses ProTable/ProForm schemas as the source of truth (see Pro references).
 
 ### 6) X decision shortcuts (when X is in scope)
+
 - Model messages/tools as serializable data; JSX is a pure view.
 - Streaming needs stable keys, throttled updates, and scroll management (see X references).
 
 ### 7) Theming decision chain
+
 1. Use global tokens for most cases.
 2. Use component tokens or `classNames`/`styles` for differences.
 3. Only if unavoidable, use scoped CSS overrides and state the risk.
 4. Never rely on global `.ant-*` overrides.
 
 ### 8) Shunt complexity to `Reference`
+
 - If any complex trigger matches, provide decision + minimal skeleton + `Reference` path.
 - Details live in the corresponding `references/*.md`.
 
 ### 9) a11y and performance checks
+
 - a11y: keyboard access, focus management for overlays, icon buttons with `aria-label`, not color-only states.
 - perf: stable keys, memoized columns, avoid frequent setState, use virtualization and throttling as needed.
 
 ## O - Output
+
 ### Output should include (as needed)
+
 - Component and layout recommendations with 1-3 sentence rationale.
 - Minimal provider and theming strategy.
 - SSR, perf, and a11y risks with concrete mitigations.
@@ -125,11 +143,13 @@ X Markdown | X Markdown extensions and rendering | `references/x-markdown-advanc
 - Advice only (no code) when the request is selection or decision guidance.
 
 ### Output forbidden
+
 - Inventing antd APIs, tokens, or relying on internal classes without calling out risk.
 - Replacing tokens with global CSS overrides.
 - Vague SSR/hydration advice without verification points.
 
 ### Regression checklist (prefer 5-10 items)
+
 - [ ] Provider: one root `ConfigProvider`; SSR style order is controlled.
 - [ ] Theming: tokens first, no broad global `.ant-*` overrides.
 - [ ] Form: validation and linkage are within `Form` and reproducible.

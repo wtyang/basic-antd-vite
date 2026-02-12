@@ -1,10 +1,10 @@
 // 403 无权限页
 
-import { Button, Result } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { Button, Result } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 export default function Page403() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <Result
       status="403"
@@ -16,5 +16,5 @@ export default function Page403() {
         </Button>
       }
     />
-  )
+  );
 }

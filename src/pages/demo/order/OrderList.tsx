@@ -1,18 +1,18 @@
 // 演示 — 订单列表
 
-import { Tag } from 'antd'
-import { ProTable } from '@ant-design/pro-components'
-import type { ProColumns } from '@ant-design/pro-components'
-import { useNavigate } from 'react-router-dom'
-import { globalPaginationConfig, globalTableScroll } from '@/config/table'
+import { Tag } from 'antd';
+import { ProTable } from '@ant-design/pro-components';
+import type { ProColumns } from '@ant-design/pro-components';
+import { useNavigate } from 'react-router-dom';
+import { globalPaginationConfig, globalTableScroll } from '@/config/table';
 
 interface OrderItem {
-  id: string
-  productName: string
-  amount: number
-  status: 'pending' | 'paid' | 'shipped' | 'completed' | 'cancelled'
-  createdAt: string
-  buyer: string
+  id: string;
+  productName: string;
+  amount: number;
+  status: 'pending' | 'paid' | 'shipped' | 'completed' | 'cancelled';
+  createdAt: string;
+  buyer: string;
 }
 
 const statusMap = {
@@ -21,7 +21,7 @@ const statusMap = {
   shipped: { text: '已发货', color: 'cyan' },
   completed: { text: '已完成', color: 'green' },
   cancelled: { text: '已取消', color: 'default' },
-}
+};
 
 const mockOrders: OrderItem[] = Array.from({ length: 15 }, (_, i) => ({
   id: `ORD${String(202600001 + i)}`,
@@ -32,10 +32,10 @@ const mockOrders: OrderItem[] = Array.from({ length: 15 }, (_, i) => ({
   ],
   createdAt: new Date(Date.now() - i * 86400000).toISOString(),
   buyer: `用户${i + 1}`,
-}))
+}));
 
 export default function OrderList() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const columns: ProColumns<OrderItem>[] = [
     { title: '订单号', dataIndex: 'id', copyable: true },
@@ -61,12 +61,10 @@ export default function OrderList() {
       title: '操作',
       valueType: 'option',
       render: (_, record) => (
-        <a onClick={() => navigate(`/demo/order/detail/${record.id}`)}>
-          查看
-        </a>
+        <a onClick={() => navigate(`/demo/order/detail/${record.id}`)}>查看</a>
       ),
     },
-  ]
+  ];
 
   return (
     <ProTable<OrderItem>
@@ -78,5 +76,5 @@ export default function OrderList() {
       search={{ labelWidth: 'auto' }}
       pagination={globalPaginationConfig}
     />
-  )
+  );
 }

@@ -1,9 +1,9 @@
 // 权限判断 Hook
 
-import { useUserStore } from '@/store'
+import { useUserStore } from '@/store';
 
 export function useAccess() {
-  const permissions = useUserStore((s) => s.permissions)
+  const permissions = useUserStore((s) => s.permissions);
 
   /**
    * 判断是否拥有指定权限
@@ -14,19 +14,19 @@ export function useAccess() {
     permission: string | string[],
     mode: 'all' | 'any' = 'any',
   ): boolean => {
-    if (!permission) return true
+    if (!permission) return true;
 
     // 超级管理员权限
     if (permissions.includes('*:*:*') || permissions.includes('*')) {
-      return true
+      return true;
     }
 
-    const perms = Array.isArray(permission) ? permission : [permission]
+    const perms = Array.isArray(permission) ? permission : [permission];
     if (mode === 'any') {
-      return perms.some((p) => permissions.includes(p))
+      return perms.some((p) => permissions.includes(p));
     }
-    return perms.every((p) => permissions.includes(p))
-  }
+    return perms.every((p) => permissions.includes(p));
+  };
 
-  return { permissions, hasPermission }
+  return { permissions, hasPermission };
 }

@@ -1,6 +1,6 @@
 /// <reference types="vitest" />
-import { defineConfig, mergeConfig } from 'vitest/config'
-import viteConfig from './vite.config'
+import { defineConfig, mergeConfig } from 'vitest/config';
+import viteConfig from './vite.config';
 
 export default mergeConfig(
   viteConfig,
@@ -12,4 +12,4 @@ export default mergeConfig(
       css: true,
     },
   }),
-)
+);

@@ -1,12 +1,12 @@
 // 主题预设配色方案
 
 export interface ThemePreset {
-  name: string
-  colorPrimary: string
-  colorSuccess?: string
-  colorWarning?: string
-  colorError?: string
-  colorInfo?: string
+  name: string;
+  colorPrimary: string;
+  colorSuccess?: string;
+  colorWarning?: string;
+  colorError?: string;
+  colorInfo?: string;
 }
 
 export const themePresets: ThemePreset[] = [
@@ -34,4 +34,4 @@ export const themePresets: ThemePreset[] = [
     name: '中国红',
     colorPrimary: '#f5222d',
   },
-]
+];

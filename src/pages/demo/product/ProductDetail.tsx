@@ -1,14 +1,12 @@
 // 演示 — 商品详情
 
-import { Card, Descriptions, Button, Space } from 'antd'
-import { useNavigate, useParams } from 'react-router-dom'
-import { ArrowLeftOutlined } from '@ant-design/icons'
-
-
+import { Card, Descriptions, Button, Space } from 'antd';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 
 export default function ProductDetail() {
-  const navigate = useNavigate()
-  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
 
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
@@ -39,5 +37,5 @@ export default function ProductDetail() {
         </Descriptions>
       </Card>
     </Space>
-  )
+  );
 }

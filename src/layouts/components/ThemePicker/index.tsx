@@ -1,15 +1,15 @@
 // 主题配色选择器组件
 
-import { Drawer, ColorPicker, Switch, Space, Typography, Divider } from 'antd'
-import { BgColorsOutlined } from '@ant-design/icons'
-import { useAppStore } from '@/store'
-import { themePresets } from '@/config/themePresets'
+import { Drawer, ColorPicker, Switch, Space, Typography, Divider } from 'antd';
+import { BgColorsOutlined } from '@ant-design/icons';
+import { useAppStore } from '@/store';
+import { themePresets } from '@/config/themePresets';
 
-const { Text } = Typography
+const { Text } = Typography;
 
 interface ThemePickerProps {
-  open: boolean
-  onClose: () => void
+  open: boolean;
+  onClose: () => void;
 }
 
 export default function ThemePicker({ open, onClose }: ThemePickerProps) {
@@ -20,7 +20,7 @@ export default function ThemePicker({ open, onClose }: ThemePickerProps) {
     setThemeMode,
     setColorPrimary,
     setCompact,
-  } = useAppStore()
+  } = useAppStore();
 
   return (
     <Drawer title="主题设置" open={open} onClose={onClose} width={300}>
@@ -86,5 +86,5 @@ export default function ThemePicker({ open, onClose }: ThemePickerProps) {
         size="large"
       />
     </Drawer>
-  )
+  );
 }

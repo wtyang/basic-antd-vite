@@ -1,42 +1,42 @@
 // 全局错误边界组件
 
-import { Component } from 'react'
-import type { ErrorInfo, ReactNode } from 'react'
-import { Button, Result } from 'antd'
+import { Component } from 'react';
+import type { ErrorInfo, ReactNode } from 'react';
+import { Button, Result } from 'antd';
 
 interface Props {
-  children: ReactNode
-  fallback?: ReactNode
+  children: ReactNode;
+  fallback?: ReactNode;
 }
 
 interface State {
-  hasError: boolean
-  error: Error | null
+  hasError: boolean;
+  error: Error | null;
 }
 
 export default class ErrorBoundary extends Component<Props, State> {
   constructor(props: Props) {
-    super(props)
-    this.state = { hasError: false, error: null }
+    super(props);
+    this.state = { hasError: false, error: null };
   }
 
   static getDerivedStateFromError(error: Error): State {
-    return { hasError: true, error }
+    return { hasError: true, error };
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.error('页面渲染异常:', error, errorInfo)
+    console.error('页面渲染异常:', error, errorInfo);
   }
 
   handleReload = () => {
-    this.setState({ hasError: false, error: null })
-    window.location.reload()
-  }
+    this.setState({ hasError: false, error: null });
+    window.location.reload();
+  };
 
   render() {
     if (this.state.hasError) {
       if (this.props.fallback) {
-        return this.props.fallback
+        return this.props.fallback;
       }
       return (
         <Result
@@ -49,9 +49,9 @@ export default class ErrorBoundary extends Component<Props, State> {
             </Button>
           }
         />
-      )
+      );
     }
 
-    return this.props.children
+    return this.props.children;
   }
 }

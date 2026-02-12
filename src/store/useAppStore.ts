@@ -1,23 +1,23 @@
 // Zustand Store — 应用全局状态
 
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-export type ThemeMode = 'light' | 'dark'
+export type ThemeMode = 'light' | 'dark';
 
 interface AppState {
   // 状态
-  collapsed: boolean
-  themeMode: ThemeMode
-  colorPrimary: string
-  compact: boolean
+  collapsed: boolean;
+  themeMode: ThemeMode;
+  colorPrimary: string;
+  compact: boolean;
 
   // 操作
-  toggleCollapsed: () => void
-  setCollapsed: (collapsed: boolean) => void
-  setThemeMode: (mode: ThemeMode) => void
-  setColorPrimary: (color: string) => void
-  setCompact: (compact: boolean) => void
+  toggleCollapsed: () => void;
+  setCollapsed: (collapsed: boolean) => void;
+  setThemeMode: (mode: ThemeMode) => void;
+  setColorPrimary: (color: string) => void;
+  setCompact: (compact: boolean) => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -38,4 +38,4 @@ export const useAppStore = create<AppState>()(
       name: 'admin_app_store',
     },
   ),
-)
+);

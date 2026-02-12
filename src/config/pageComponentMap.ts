@@ -1,6 +1,6 @@
 // 页面组件映射表 — path 标识 → 懒加载组件
 
-import { lazy } from 'react'
+import { lazy } from 'react';
 
 export const pageComponentMap: Record<
   string,
@@ -28,4 +28,4 @@ export const pageComponentMap: Record<
 
   // 个人中心
   'account/index': lazy(() => import('@/pages/account')),
-}
+};

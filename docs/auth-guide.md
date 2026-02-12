@@ -28,11 +28,10 @@
 使用 `Access` 组件进行细粒度控制：
 
 ```tsx
-import Access from '@/components/Access'
-
-;<Access permission="user:add">
+import Access from '@/components/Access';
+<Access permission="user:add">
   <Button>新增用户</Button>
-</Access>
+</Access>;
 ```
 
 - **超级管理员**：拥有 `*:*:*` 权限的用户将自动获得所有权限。

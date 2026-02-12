@@ -1,13 +1,13 @@
 // 权限控制组件
 
-import type { ReactNode } from 'react'
-import { useAccess } from '@/hooks/useAccess'
+import type { ReactNode } from 'react';
+import { useAccess } from '@/hooks/useAccess';
 
 interface AccessProps {
-  permission: string | string[]
-  mode?: 'all' | 'any'
-  fallback?: ReactNode
-  children: ReactNode
+  permission: string | string[];
+  mode?: 'all' | 'any';
+  fallback?: ReactNode;
+  children: ReactNode;
 }
 
 /**
@@ -28,11 +28,11 @@ export default function Access({
   fallback = null,
   children,
 }: AccessProps) {
-  const { hasPermission } = useAccess()
+  const { hasPermission } = useAccess();
 
   if (hasPermission(permission, mode)) {
-    return <>{children}</>
+    return <>{children}</>;
   }
 
-  return <>{fallback}</>
+  return <>{fallback}</>;
 }

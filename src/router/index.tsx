@@ -1,14 +1,14 @@
 // 路由配置入口
 
-import { createBrowserRouter, Navigate } from 'react-router-dom'
-import BasicLayout from '@/layouts/BasicLayout'
-import BlankLayout from '@/layouts/BlankLayout'
-import AuthGuard from './AuthGuard'
-import LoginPage from '@/pages/login'
-import SsoCallback from '@/pages/login/SsoCallback'
-import Page403 from '@/pages/exception/403'
-import Page404 from '@/pages/exception/404'
-import DynamicRouteRenderer from './DynamicRouteRenderer'
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+import BasicLayout from '@/layouts/BasicLayout';
+import BlankLayout from '@/layouts/BlankLayout';
+import AuthGuard from './AuthGuard';
+import LoginPage from '@/pages/login';
+import SsoCallback from '@/pages/login/SsoCallback';
+import Page403 from '@/pages/exception/403';
+import Page404 from '@/pages/exception/404';
+import DynamicRouteRenderer from './DynamicRouteRenderer';
 
 const router = createBrowserRouter([
   // 无布局路由 — 登录、SSO 回调
@@ -37,6 +37,6 @@ const router = createBrowserRouter([
   },
   // 全局 404
   { path: '*', element: <Page404 /> },
-])
+]);
 
-export default router
+export default router;

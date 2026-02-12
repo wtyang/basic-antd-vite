@@ -1,29 +1,29 @@
 // 演示 — 商品表单（新增/编辑）
 
-import { Card, Space, Button, App } from 'antd'
-import { ArrowLeftOutlined } from '@ant-design/icons'
+import { Card, Space, Button, App } from 'antd';
+import { ArrowLeftOutlined } from '@ant-design/icons';
 import {
   ProForm,
   ProFormText,
   ProFormDigit,
   ProFormSelect,
-} from '@ant-design/pro-components'
-import { useNavigate, useParams } from 'react-router-dom'
-import { ProFormItem } from '@ant-design/pro-components'
-import FileUpload from '@/components/FileUpload'
-import RichTextEditor from '@/components/RichTextEditor'
+} from '@ant-design/pro-components';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ProFormItem } from '@ant-design/pro-components';
+import FileUpload from '@/components/FileUpload';
+import RichTextEditor from '@/components/RichTextEditor';
 
 export default function ProductForm() {
-  const navigate = useNavigate()
-  const { id } = useParams<{ id: string }>()
-  const { message } = App.useApp()
-  const isEdit = !!id
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
+  const { message } = App.useApp();
+  const isEdit = !!id;
 
   const handleSubmit = async (values: Record<string, unknown>) => {
-    console.log('表单提交:', values)
-    message.success(isEdit ? '编辑成功' : '创建成功')
-    navigate(-1)
-  }
+    console.log('表单提交:', values);
+    message.success(isEdit ? '编辑成功' : '创建成功');
+    navigate(-1);
+  };
 
   return (
     <Space direction="vertical" size="large" style={{ width: '100%' }}>
@@ -83,5 +83,5 @@ export default function ProductForm() {
         </ProForm>
       </Card>
     </Space>
-  )
+  );
 }

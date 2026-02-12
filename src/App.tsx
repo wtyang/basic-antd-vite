@@ -1,15 +1,15 @@
 // 应用根组件 — 主题 + 路由
 
-import { useMemo } from 'react'
-import { RouterProvider } from 'react-router-dom'
-import { App as AntdApp, ConfigProvider, theme } from 'antd'
-import zhCN from 'antd/locale/zh_CN'
-import { useAppStore } from '@/store'
-import ErrorBoundary from '@/components/ErrorBoundary'
-import router from '@/router'
+import { useMemo } from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { App as AntdApp, ConfigProvider, theme } from 'antd';
+import zhCN from 'antd/locale/zh_CN';
+import { useAppStore } from '@/store';
+import ErrorBoundary from '@/components/ErrorBoundary';
+import router from '@/router';
 
 export default function App() {
-  const { themeMode, colorPrimary, compact } = useAppStore()
+  const { themeMode, colorPrimary, compact } = useAppStore();
 
   // 根据用户设置构建主题 Token
   const themeConfig = useMemo(
@@ -23,7 +23,7 @@ export default function App() {
       },
     }),
     [themeMode, colorPrimary, compact],
-  )
+  );
 
   return (
     <ConfigProvider theme={themeConfig} locale={zhCN}>
@@ -33,5 +33,5 @@ export default function App() {
         </ErrorBoundary>
       </AntdApp>
     </ConfigProvider>
-  )
+  );
 }

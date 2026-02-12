@@ -1,40 +1,40 @@
 // 顶部右侧操作区
 
-import { useState } from 'react'
-import { Avatar, Dropdown, Space, Badge } from 'antd'
-import type { MenuProps } from 'antd'
+import { useState } from 'react';
+import { Avatar, Dropdown, Space, Badge } from 'antd';
+import type { MenuProps } from 'antd';
 import {
   UserOutlined,
   LogoutOutlined,
   BgColorsOutlined,
   BellOutlined,
   SettingOutlined,
-} from '@ant-design/icons'
-import { useNavigate } from 'react-router-dom'
-import { useUserStore } from '@/store'
-import { logout as apiLogout } from '@/api/modules/auth'
-import { useMenuStore } from '@/store'
-import GlobalSearch from '../GlobalSearch'
-import ThemePicker from '../ThemePicker'
+} from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import { useUserStore } from '@/store';
+import { logout as apiLogout } from '@/api/modules/auth';
+import { useMenuStore } from '@/store';
+import GlobalSearch from '../GlobalSearch';
+import ThemePicker from '../ThemePicker';
 
-import styles from './index.module.css'
+import styles from './index.module.css';
 
 export default function HeaderRight() {
-  const navigate = useNavigate()
-  const { userInfo, logout } = useUserStore()
-  const { clearMenus } = useMenuStore()
-  const [themeOpen, setThemeOpen] = useState(false)
+  const navigate = useNavigate();
+  const { userInfo, logout } = useUserStore();
+  const { clearMenus } = useMenuStore();
+  const [themeOpen, setThemeOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
-      await apiLogout()
+      await apiLogout();
     } catch {
       // 即使退出接口失败，也清理本地状态
     }
-    logout()
-    clearMenus()
-    navigate('/login', { replace: true })
-  }
+    logout();
+    clearMenus();
+    navigate('/login', { replace: true });
+  };
 
   const userMenuItems: MenuProps['items'] = [
     {
@@ -50,7 +50,7 @@ export default function HeaderRight() {
       label: '退出登录',
       onClick: handleLogout,
     },
-  ]
+  ];
 
   return (
     <Space size={8} align="center">
@@ -82,5 +82,5 @@ export default function HeaderRight() {
       {/* 主题设置抽屉 */}
       <ThemePicker open={themeOpen} onClose={() => setThemeOpen(false)} />
     </Space>
-  )
+  );
 }

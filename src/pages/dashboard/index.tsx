@@ -1,14 +1,14 @@
 // 仪表盘首页
 
-import { Card, Col, Row, Statistic, Typography, Space } from 'antd'
+import { Card, Col, Row, Statistic, Typography, Space } from 'antd';
 import {
   ShoppingCartOutlined,
   UserOutlined,
   DollarOutlined,
   RiseOutlined,
-} from '@ant-design/icons'
+} from '@ant-design/icons';
 
-const { Title, Paragraph } = Typography
+const { Title, Paragraph } = Typography;
 
 export default function Dashboard() {
   return (
@@ -72,5 +72,5 @@ export default function Dashboard() {
         </Paragraph>
       </Card>
     </Space>
-  )
+  );
 }

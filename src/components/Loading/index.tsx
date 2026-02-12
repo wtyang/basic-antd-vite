@@ -1,6 +1,6 @@
 // 全局加载组件
 
-import { Spin } from 'antd'
+import { Spin } from 'antd';
 
 export default function Loading() {
   return (
@@ -15,5 +15,5 @@ export default function Loading() {
     >
       <Spin size="large" />
     </div>
-  )
+  );
 }

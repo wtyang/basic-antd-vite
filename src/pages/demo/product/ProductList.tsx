@@ -1,20 +1,20 @@
 // 演示 — 商品列表
 
-import { Button, Space, Tag } from 'antd'
-import { PlusOutlined } from '@ant-design/icons'
-import { ProTable } from '@ant-design/pro-components'
-import type { ProColumns } from '@ant-design/pro-components'
-import { useNavigate } from 'react-router-dom'
-import { globalPaginationConfig, globalTableScroll } from '@/config/table'
-import Access from '@/components/Access'
+import { Button, Space, Tag } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
+import { ProTable } from '@ant-design/pro-components';
+import type { ProColumns } from '@ant-design/pro-components';
+import { useNavigate } from 'react-router-dom';
+import { globalPaginationConfig, globalTableScroll } from '@/config/table';
+import Access from '@/components/Access';
 
 interface ProductItem {
-  id: number
-  name: string
-  price: number
-  status: 'on' | 'off'
-  category: string
-  createdAt: string
+  id: number;
+  name: string;
+  price: number;
+  status: 'on' | 'off';
+  category: string;
+  createdAt: string;
 }
 
 // 模拟数据
@@ -25,10 +25,10 @@ const mockData: ProductItem[] = Array.from({ length: 20 }, (_, i) => ({
   status: Math.random() > 0.3 ? 'on' : 'off',
   category: ['电子产品', '食品饮料', '服装鞋帽', '家居用品'][i % 4],
   createdAt: new Date(Date.now() - i * 86400000).toISOString(),
-}))
+}));
 
 export default function ProductList() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const columns: ProColumns<ProductItem>[] = [
     { title: 'ID', dataIndex: 'id', width: 60, search: false },
@@ -78,7 +78,7 @@ export default function ProductList() {
         </Space>
       ),
     },
-  ]
+  ];
 
   return (
     <ProTable<ProductItem>
@@ -101,5 +101,5 @@ export default function ProductList() {
         </Access>,
       ]}
     />
-  )
+  );
 }
