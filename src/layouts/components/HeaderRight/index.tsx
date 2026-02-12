@@ -53,9 +53,11 @@ export default function HeaderRight() {
   ];
 
   return (
-    <Space size={8} align="center">
+    <Space className={styles.headerRight} size={8} align="center">
       {/* 全局搜索 */}
-      <GlobalSearch />
+      <div className={styles.actionItem}>
+        <GlobalSearch />
+      </div>
 
       {/* 主题设置 */}
       <div className={styles.actionItem} onClick={() => setThemeOpen(true)}>

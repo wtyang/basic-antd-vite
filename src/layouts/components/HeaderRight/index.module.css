@@ -35,3 +35,8 @@
   color: #000000;
   /* 或保持主题色，这里暂时用黑色 */
 }
+
+.headerRight {
+  display: flex !important;
+  background-color: transparent !important;
+}

@@ -95,8 +95,8 @@ export default function GlobalSearch() {
 
   return (
     <>
-      <div className={styles.actionItem} onClick={() => setOpen(true)}>
-        <SearchOutlined className={styles.icon} />
+      <div onClick={() => setOpen(true)}>
+        <SearchOutlined className={styles.icon} /> ctrl+k
       </div>
 
       <Modal
