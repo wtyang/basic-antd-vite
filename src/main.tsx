@@ -21,8 +21,8 @@ async function enableMocking() {
     .start({
       onUnhandledRequest: 'bypass',
       serviceWorker: {
-        // 兼容 GitHub Pages 等子路径部署
-        url: `${import.meta.env.BASE_URL}mockServiceWorker.js`,
+        // 兼容 GitHub Pages 等子路径部署，确保路径拼接正确
+        url: `${import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/'}mockServiceWorker.js`,
       },
     })
     .catch((err) => {
