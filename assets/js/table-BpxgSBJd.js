@@ -1,0 +1,1 @@
+const a=["20","50","100","200"],e={defaultPageSize:50,pageSizeOptions:a,showSizeChanger:!0,showQuickJumper:!0,showTotal:o=>`共 ${o} 条`},t={x:"max-content",y:"calc(100vh - 400px)"};export{t as a,e as g};
