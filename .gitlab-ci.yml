@@ -1,0 +1,55 @@
+image: node:22-alpine
+
+stages:
+  - install
+  - lint
+  - test
+  - build
+  - deploy
+
+cache:
+  paths:
+    - node_modules/
+
+install_dependencies:
+  stage: install
+  script:
+    - npm install
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1h
+
+lint:
+  stage: lint
+  script:
+    - npm run lint
+
+test:
+  stage: test
+  script:
+    - npm run test:run
+
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 week
+
+# deploy_staging:
+#   stage: deploy
+#   script:
+#     - echo "Deploying to staging..."
+#   only:
+#     - develop
+
+# deploy_production:
+#   stage: deploy
+#   script:
+#     - echo "Deploying to production..."
+#   only:
+#     - main
+#   when: manual

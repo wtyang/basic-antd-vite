@@ -6,12 +6,12 @@ import {
   ProForm,
   ProFormText,
   ProFormDigit,
-  ProFormTextArea,
   ProFormSelect,
 } from '@ant-design/pro-components'
 import { useNavigate, useParams } from 'react-router-dom'
-
-
+import { ProFormItem } from '@ant-design/pro-components'
+import FileUpload from '@/components/FileUpload'
+import RichTextEditor from '@/components/RichTextEditor'
 
 export default function ProductForm() {
   const navigate = useNavigate()
@@ -74,11 +74,12 @@ export default function ProductForm() {
             ]}
             rules={[{ required: true, message: '请选择分类' }]}
           />
-          <ProFormTextArea
-            name="description"
-            label="描述"
-            placeholder="请输入商品描述"
-          />
+          <ProFormItem name="images" label="商品图片" trigger="onChange">
+            <FileUpload maxSize={5} accept="image/*" listType="picture" />
+          </ProFormItem>
+          <ProFormItem name="description" label="详细描述" trigger="onChange">
+            <RichTextEditor height={300} placeholder="请输入商品详细介绍..." />
+          </ProFormItem>
         </ProForm>
       </Card>
     </Space>
