@@ -1,27 +1,28 @@
 // Zustand Store — 用户信息、Token、权限
 
-import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
-import type { UserInfo } from '@/types/api'
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+import type { UserInfo } from '@/types/api';
 import {
   getToken,
   setToken,
+  // @ts-ignore
   removeToken,
   setRefreshToken,
   clearAuth,
-} from '@/utils/auth'
+} from '@/utils/auth';
 
 interface UserState {
   // 状态
-  token: string | undefined
-  userInfo: UserInfo | null
-  permissions: string[]
+  token: string | undefined;
+  userInfo: UserInfo | null;
+  permissions: string[];
 
   // 操作
-  setTokenAction: (token: string, refreshToken?: string) => void
-  setUserInfo: (info: UserInfo) => void
-  setPermissions: (permissions: string[]) => void
-  logout: () => void
+  setTokenAction: (token: string, refreshToken?: string) => void;
+  setUserInfo: (info: UserInfo) => void;
+  setPermissions: (permissions: string[]) => void;
+  logout: () => void;
 }
 
 export const useUserStore = create<UserState>()(
@@ -32,22 +33,22 @@ export const useUserStore = create<UserState>()(
       permissions: [],
 
       setTokenAction: (token: string, refreshTokenVal?: string) => {
-        setToken(token)
-        if (refreshTokenVal) setRefreshToken(refreshTokenVal)
-        set({ token })
+        setToken(token);
+        if (refreshTokenVal) setRefreshToken(refreshTokenVal);
+        set({ token });
       },
 
       setUserInfo: (info: UserInfo) => {
-        set({ userInfo: info })
+        set({ userInfo: info });
       },
 
       setPermissions: (permissions: string[]) => {
-        set({ permissions })
+        set({ permissions });
       },
 
       logout: () => {
-        clearAuth()
-        set({ token: undefined, userInfo: null, permissions: [] })
+        clearAuth();
+        set({ token: undefined, userInfo: null, permissions: [] });
       },
     }),
     {
@@ -59,4 +60,4 @@ export const useUserStore = create<UserState>()(
       }),
     },
   ),
-)
+);

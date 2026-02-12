@@ -1,6 +1,6 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import path from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -30,10 +30,14 @@ export default defineConfig({
         manualChunks: {
           // 将大型依赖拆分为独立 chunk
           vendor: ['react', 'react-dom'],
-          antd: ['antd', '@ant-design/icons'],
+          antd: ['antd'],
+          icons: ['@ant-design/icons'],
+          'pro-components': ['@ant-design/pro-components'],
           router: ['react-router-dom'],
         },
       },
     },
+    // 对大型中后台项目，提高警告阈值至 1600kB
+    chunkSizeWarningLimit: 1600,
   },
-})
+});

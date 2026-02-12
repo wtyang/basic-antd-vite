@@ -26,7 +26,32 @@
 
 ---
 
-## 🚀 部署策略
+## �️ 平台配置指南
+
+要使流水线正常运行，除了配置文件外，还需要在平台端进行少量配置。
+
+### 1. GitHub Actions 配置步奏
+
+1.  **代码提交**：将 `.github/workflows/ci.yml` 推送至远程仓库。
+2.  **查看进度**：在 GitHub 仓库顶部的 **Actions** 选项卡中可以查看所有正在运行或已完成的任务。
+3.  **配置密钥 (如需自动部署)**：
+    - 进入仓库 **Settings** -> **Secrets and variables** -> **Actions**。
+    - 点击 **New repository secret**。
+    - 添加部署所需的凭证（如 `SSH_PRIVATE_KEY` 或服务器密码），这些变量可以在 `.yml` 中引用（如 `${{ secrets.SSH_PRIVATE_KEY }}`）。
+
+### 2. GitLab CI 配置步奏
+
+1.  **代码提交**：确保项目根目录下存在 `.gitlab-ci.yml`。
+2.  **查看进度**：在 GitLab 左侧导航栏中选择 **Build** -> **Pipelines** 查看运行状态。
+3.  **配置变量**：
+    - 进入 **Settings** -> **CI/CD**。
+    - 展开 **Variables** 部分，点击 **Add variable**。
+    - 添加部署相关的变量（如 `PRODUCTION_SERVER_IP`），在 `.gitlab-ci.yml` 中直接通过 `$PRODUCTION_SERVER_IP` 访问。
+    - 建议对敏感信息开启 **Masked** 选项以防日志泄露。
+
+---
+
+## �🚀 部署策略
 
 ### 1. 传统 Web 服务器部署 (Nginx)
 

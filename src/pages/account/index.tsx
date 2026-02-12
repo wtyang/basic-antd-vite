@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from 'react';
 import {
   Card,
   Tabs,
@@ -12,23 +12,18 @@ import {
   Button,
   Form,
   message,
-} from 'antd'
+} from 'antd';
 import {
-  UserOutlined,
   HomeOutlined,
   ContactsOutlined,
-  SafetyOutlined,
   ClusterOutlined,
-  AimOutlined,
-} from '@ant-design/icons'
-import { useUserStore } from '@/store'
-import styles from './index.module.css'
-
-const { TabPane } = Tabs
+} from '@ant-design/icons';
+import { useUserStore } from '@/store';
+import styles from './index.module.css';
 
 export default function AccountPage() {
-  const { userInfo } = useUserStore()
-  const [tabKey, setTabKey] = useState('basic')
+  const { userInfo } = useUserStore();
+  const [tabKey, setTabKey] = useState('basic');
 
   // 渲染左侧个人信息
   const renderUserInfo = () => (
@@ -37,28 +32,27 @@ export default function AccountPage() {
         <img
           alt=""
           className={styles.avatar}
-          src={userInfo?.avatar || 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'}
+          src={
+            userInfo?.avatar ||
+            'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png'
+          }
         />
-        <div className={styles.username}>{userInfo?.nickname || userInfo?.username}</div>
+        <div className={styles.username}>
+          {userInfo?.nickname || userInfo?.username}
+        </div>
         <div className={styles.bio}>海纳百川，有容乃大</div>
       </div>
       <div className={styles.detail}>
         <p>
-          <ContactsOutlined
-            style={{ marginRight: 8 }}
-          />
+          <ContactsOutlined style={{ marginRight: 8 }} />
           {userInfo?.roles?.includes('admin') ? '超级管理员' : '普通用户'}
         </p>
         <p>
-          <ClusterOutlined
-            style={{ marginRight: 8 }}
-          />
+          <ClusterOutlined style={{ marginRight: 8 }} />
           蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED
         </p>
         <p>
-          <HomeOutlined
-            style={{ marginRight: 8 }}
-          />
+          <HomeOutlined style={{ marginRight: 8 }} />
           浙江省杭州市
         </p>
       </div>
@@ -80,20 +74,30 @@ export default function AccountPage() {
         <Row gutter={[16, 16]}>
           <Col span={12}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Avatar size="small" style={{ backgroundColor: '#1890ff', marginRight: 8 }}>A</Avatar>
+              <Avatar
+                size="small"
+                style={{ backgroundColor: '#1890ff', marginRight: 8 }}
+              >
+                A
+              </Avatar>
               <span>科学搬砖组</span>
             </div>
           </Col>
           <Col span={12}>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <Avatar size="small" style={{ backgroundColor: '#52c41a', marginRight: 8 }}>P</Avatar>
+              <Avatar
+                size="small"
+                style={{ backgroundColor: '#52c41a', marginRight: 8 }}
+              >
+                P
+              </Avatar>
               <span>程序员日常</span>
             </div>
           </Col>
         </Row>
       </div>
     </Card>
-  )
+  );
 
   // 基本设置表单
   const BasicSettings = () => (
@@ -113,10 +117,18 @@ export default function AccountPage() {
         }}
         onFinish={() => message.success('更新基本信息成功')}
       >
-        <Form.Item name="email" label="邮箱" rules={[{ required: true, message: '请输入邮箱' }]}>
+        <Form.Item
+          name="email"
+          label="邮箱"
+          rules={[{ required: true, message: '请输入邮箱' }]}
+        >
           <Input />
         </Form.Item>
-        <Form.Item name="nickname" label="昵称" rules={[{ required: true, message: '请输入昵称' }]}>
+        <Form.Item
+          name="nickname"
+          label="昵称"
+          rules={[{ required: true, message: '请输入昵称' }]}
+        >
           <Input />
         </Form.Item>
         <Form.Item name="profile" label="个人简介">
@@ -144,7 +156,7 @@ export default function AccountPage() {
         </Form.Item>
       </Form>
     </div>
-  )
+  );
 
   // 安全设置
   const SecuritySettings = () => {
@@ -169,18 +181,33 @@ export default function AccountPage() {
         description: '已绑定邮箱：ant***sign.com',
         actions: [<a key="Modify">修改</a>],
       },
-    ]
+    ];
 
     return (
       <div>
         <TypographyHeading title="安全设置" />
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           {data.map((item, index) => (
-            <div key={index} style={{ borderBottom: '1px solid #f0f0f0', paddingBottom: 24 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div
+              key={index}
+              style={{ borderBottom: '1px solid #f0f0f0', paddingBottom: 24 }}
+            >
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
                 <div>
-                  <div style={{ fontSize: 16, fontWeight: 500, marginBottom: 4 }}>{item.title}</div>
-                  <div style={{ color: 'rgba(0,0,0,0.45)' }}>{item.description}</div>
+                  <div
+                    style={{ fontSize: 16, fontWeight: 500, marginBottom: 4 }}
+                  >
+                    {item.title}
+                  </div>
+                  <div style={{ color: 'rgba(0,0,0,0.45)' }}>
+                    {item.description}
+                  </div>
                 </div>
                 {item.actions}
               </div>
@@ -188,8 +215,8 @@ export default function AccountPage() {
           ))}
         </div>
       </div>
-    )
-  }
+    );
+  };
 
   const TypographyHeading = ({ title }: { title: string }) => (
     <div style={{ marginBottom: 24 }}>
@@ -197,7 +224,7 @@ export default function AccountPage() {
         {title}
       </span>
     </div>
-  )
+  );
 
   return (
     <div className={styles.main}>
@@ -215,17 +242,17 @@ export default function AccountPage() {
               {
                 key: 'basic',
                 label: '基本设置',
-                children: <BasicSettings />
+                children: <BasicSettings />,
               },
               {
                 key: 'security',
                 label: '安全设置',
-                children: <SecuritySettings />
+                children: <SecuritySettings />,
               },
             ]}
           />
         </Card>
       </div>
     </div>
-  )
+  );
 }

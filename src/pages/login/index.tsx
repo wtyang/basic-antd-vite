@@ -1,55 +1,44 @@
 // 登录页面
 
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import {
-  Form,
-  Input,
-  Button,
-  message,
-  Checkbox,
-  ConfigProvider,
-} from 'antd'
-import {
-  UserOutlined,
-  LockOutlined,
-  GlobalOutlined,
-} from '@ant-design/icons'
-import { login, getUserInfo, getUserMenus } from '@/api/modules/auth'
-import { useUserStore, useMenuStore } from '@/store'
-import type { LoginParams } from '@/types/api'
-import styles from './index.module.css'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Form, Input, Button, message, Checkbox, ConfigProvider } from 'antd';
+import { UserOutlined, LockOutlined, GlobalOutlined } from '@ant-design/icons';
+import { login, getUserInfo, getUserMenus } from '@/api/modules/auth';
+import { useUserStore, useMenuStore } from '@/store';
+import type { LoginParams } from '@/types/api';
+import styles from './index.module.css';
 
 export default function LoginPage() {
-  const navigate = useNavigate()
-  const { setTokenAction, setUserInfo, setPermissions } = useUserStore()
-  const { setMenus } = useMenuStore()
-  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
+  const { setTokenAction, setUserInfo, setPermissions } = useUserStore();
+  const { setMenus } = useMenuStore();
+  const [loading, setLoading] = useState(false);
 
   // JWT 普通登录
   const handleLogin = async (values: LoginParams) => {
-    setLoading(true)
+    setLoading(true);
     try {
-      const loginRes = await login(values)
-      const { accessToken, refreshToken } = loginRes.data
-      setTokenAction(accessToken, refreshToken)
+      const loginRes = await login(values);
+      const { accessToken, refreshToken } = loginRes.data;
+      setTokenAction(accessToken, refreshToken);
 
-      const userRes = await getUserInfo()
-      setUserInfo(userRes.data)
+      const userRes = await getUserInfo();
+      setUserInfo(userRes.data);
 
-      const menuRes = await getUserMenus()
-      const { menus, permissions } = menuRes.data
-      setMenus(menus)
-      setPermissions(permissions)
+      const menuRes = await getUserMenus();
+      const { menus, permissions } = menuRes.data;
+      setMenus(menus);
+      setPermissions(permissions);
 
-      message.success('登录成功')
-      navigate('/', { replace: true })
+      message.success('登录成功');
+      navigate('/', { replace: true });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   // 密码登录表单
   const PasswordForm = () => (
@@ -58,9 +47,16 @@ export default function LoginPage() {
       size="large"
       onFinish={handleLogin}
       autoComplete="off"
-      style={{ marginTop: '24px' }}
+      style={{ marginTop: '16px' }}
     >
-      <div style={{ fontSize: '20px', fontWeight: '500', marginBottom: '24px', color: '#333' }}>
+      <div
+        style={{
+          fontSize: '20px',
+          fontWeight: '500',
+          marginBottom: '24px',
+          color: '#333',
+        }}
+      >
         账号登录
       </div>
 
@@ -69,7 +65,7 @@ export default function LoginPage() {
         rules={[{ required: true, message: '请输入手机号/邮箱/会员名' }]}
       >
         <Input
-          prefix={<UserOutlined style={{ color: '#bfbfbf' }} />}
+          prefix={<UserOutlined />}
           placeholder="请输入手机号/邮箱/会员名"
           className={styles.formInput}
         />
@@ -80,7 +76,7 @@ export default function LoginPage() {
         rules={[{ required: true, message: '请输入密码' }]}
       >
         <Input.Password
-          prefix={<LockOutlined style={{ color: '#bfbfbf' }} />}
+          prefix={<LockOutlined />}
           placeholder="请输入登录密码"
           className={styles.formInput}
         />
@@ -114,7 +110,7 @@ export default function LoginPage() {
         <a style={{ color: '#666' }}>忘记密码？</a>
       </div>
     </Form>
-  )
+  );
 
   return (
     <ConfigProvider
@@ -135,14 +131,27 @@ export default function LoginPage() {
             <div className={styles.brand}>
               <GlobalOutlined className={styles.logoIcon} />
               <div>
-                <div style={{ fontSize: '24px', fontWeight: 'bold' }}>Ant Design Admin</div>
-                <div style={{ fontSize: '14px', letterSpacing: '4px' }}>开箱即用的后台管理系统</div>
+                <div style={{ fontSize: '24px', fontWeight: 'bold' }}>
+                  Ant Design Admin
+                </div>
+                <div style={{ fontSize: '14px', letterSpacing: '4px' }}>
+                  开箱即用的后台管理系统
+                </div>
               </div>
               <div className={styles.logoText}>旗舰版</div>
             </div>
 
-            <div style={{ fontSize: '48px', fontWeight: 'bold', lineHeight: '1.2', marginBottom: '24px' }}>
-              让开发<br />更简单
+            <div
+              style={{
+                fontSize: '48px',
+                fontWeight: 'bold',
+                lineHeight: '1.2',
+                marginBottom: '24px',
+              }}
+            >
+              让开发
+              <br />
+              更简单
             </div>
 
             <div className={styles.sloganList}>
@@ -154,7 +163,14 @@ export default function LoginPage() {
           </div>
 
           {/* 右侧登录区 */}
-          <div className={styles.rightPanel} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div
+            className={styles.rightPanel}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
             <div style={{ width: '100%' }}>
               <PasswordForm />
             </div>
@@ -162,5 +178,5 @@ export default function LoginPage() {
         </div>
       </div>
     </ConfigProvider>
-  )
+  );
 }
