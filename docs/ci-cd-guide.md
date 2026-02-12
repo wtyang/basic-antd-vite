@@ -16,6 +16,12 @@
   4.  **代码检测**：执行 `npm run lint`（ESLint + Stylelint）。
   5.  **单元测试**：执行 `npm run test:run`（Vitest）。
   6.  **项目构建**：执行 `npm run build`（生成 `dist` 目录）。
+  7.  **自动部署**：构建成功后自动发布至 `gh-pages` 分支（仅限 `main` 分支）。
+
+> [!TIP]
+> **如何跳过 CI/CD？**
+> 如果你想推送代码但不希望触发流水线和部署，可以在 Commit Message 中加入 `[skip ci]`。
+> 示例：`git commit -m "docs: 修改文档 [skip ci]"`
 
 ### 2. GitLab CI
 

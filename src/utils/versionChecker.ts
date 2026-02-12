@@ -16,7 +16,13 @@ let checkTimer: ReturnType<typeof setInterval> | null = null;
  */
 async function checkVersion(onUpdate?: () => void): Promise<void> {
   try {
-    const response = await fetch(`/version.json?t=${Date.now()}`, {
+    const baseUrl = import.meta.env.BASE_URL || '/';
+    const versionUrl =
+      `${baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'}${'version.json'}`.replace(
+        /\/+/g,
+        '/',
+      );
+    const response = await fetch(`${versionUrl}?t=${Date.now()}`, {
       cache: 'no-cache',
     });
     if (!response.ok) return;

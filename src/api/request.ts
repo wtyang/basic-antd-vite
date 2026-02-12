@@ -61,11 +61,19 @@ request.interceptors.response.use(
     const status = error.response?.status;
 
     switch (status) {
-      case 401:
+      case 401: {
         message.error('登录已过期，请重新登录');
         clearAuth();
-        window.location.href = '/login';
+        // 兼容子路径部署
+        const baseUrl = import.meta.env.BASE_URL || '/';
+        const loginUrl =
+          `${baseUrl.endsWith('/') ? baseUrl : baseUrl + '/'}${'login'}`.replace(
+            /\/+/g,
+            '/',
+          );
+        window.location.href = loginUrl;
         break;
+      }
       case 403:
         message.error('没有操作权限');
         break;
