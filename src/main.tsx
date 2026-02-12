@@ -8,18 +8,22 @@ import { startVersionCheck } from '@/utils/versionChecker';
 startVersionCheck();
 
 async function enableMocking() {
-  console.log('[MSW] enableMocking called, MODE:', import.meta.env.MODE);
-  if (import.meta.env.MODE !== 'development') {
+  const isDev = import.meta.env.MODE === 'development';
+  // 允许通过环境变量强制开启 Mock (用于演示)
+  const enableMocks = import.meta.env.VITE_ENABLE_MOCKS === 'true';
+
+  if (!isDev && !enableMocks) {
     return;
   }
+
   const { worker } = await import('./mocks/browser');
-  console.log('[MSW] worker imported');
   return worker
     .start({
-      onUnhandledRequest: 'bypass', // 不拦截未处理的请求（如静态资源）
-    })
-    .then(() => {
-      console.log('[MSW] worker started successfully');
+      onUnhandledRequest: 'bypass',
+      serviceWorker: {
+        // 兼容 GitHub Pages 等子路径部署
+        url: `${import.meta.env.BASE_URL}mockServiceWorker.js`,
+      },
     })
     .catch((err) => {
       console.error('[MSW] worker start failed:', err);
