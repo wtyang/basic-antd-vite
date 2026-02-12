@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:style": "stylelint \"**/*.{css,less,scss}\"",
+    "prettier": "npx prettier --write .",
     "preview": "vite preview",
     "test": "vitest",
     "test:run": "vitest run",
