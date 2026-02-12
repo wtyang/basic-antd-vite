@@ -1,0 +1,37 @@
+.actionItem {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px;
+    min-width: 40px;
+    /* 保证正方形点击区域 */
+    padding: 0 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 6px;
+}
+
+.actionItem:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.avatarItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 6px;
+    height: 40px;
+}
+
+.avatarItem:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.icon {
+    font-size: 18px;
+    color: #000000;
+    /* 或保持主题色，这里暂时用黑色 */
+}

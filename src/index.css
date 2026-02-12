@@ -1,0 +1,82 @@
+/* 全局样式 */
+
+/* 重置默认样式 */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family:
+    'PingFang SC',
+    'Source Han Sans CN',
+    -apple-system,
+    BlinkMacSystemFont,
+    'SF Pro',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* 链接样式 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 过渡动画 */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 200ms ease-out;
+}
+
+/* 修正 ProLayout Logo 区域宽度，使其与侧边栏对齐 */
+.ant-pro-global-header-logo {
+  min-width: 208px !important;
+  /* justify-content: center; */
+}
