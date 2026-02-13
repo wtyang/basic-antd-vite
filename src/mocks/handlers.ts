@@ -128,6 +128,7 @@ export const handlers = [
             name: '个人中心',
             icon: 'UserOutlined',
             component: 'account/index',
+            hidden: true,
           },
         ],
       },
@@ -137,4 +138,69 @@ export const handlers = [
 
   // 获取商品列表（可选，如果需要支持分页/搜索）
   // http.get(`${API_PREFIX}/products`, ...)
+
+  // 获取门户系统列表
+  http.get(`${API_PREFIX}/portal/systems`, async () => {
+    await delay(100);
+    return HttpResponse.json({
+      code: 0,
+      data: [
+        {
+          category: '门店运营',
+          iconCategory: 'ShopOutlined',
+          apps: [
+            {
+              name: 'PMS管理后台',
+              desc: '门店日常运营管理后台',
+              icon: 'CloudServerOutlined',
+              color: '#52c41a',
+            },
+            {
+              name: '酒店收益管理',
+              desc: '帮助店长监控流量并自动预警',
+              icon: 'PayCircleOutlined',
+              color: '#faad14',
+            },
+            {
+              name: 'CRS管理平台',
+              desc: '实时预订服务的专有平台',
+              icon: 'SolutionOutlined',
+              color: '#eb2f96',
+            },
+            {
+              name: '营销管理平台',
+              desc: '营销活动、营销工具配置后台',
+              icon: 'SnippetsOutlined',
+              color: '#722ed1',
+            },
+            {
+              name: '智慧客房',
+              desc: '即时房务管理平台',
+              icon: 'SecurityScanOutlined',
+              color: '#13c2c2',
+            },
+          ],
+        },
+        {
+          category: '数据应用',
+          iconCategory: 'BarChartOutlined',
+          apps: [
+            {
+              name: '报表平台',
+              desc: '提供自定义报表设计',
+              icon: 'BarChartOutlined',
+              color: '#2f54eb',
+            },
+            {
+              name: 'BI分析平台',
+              desc: '商业智能分析平台',
+              icon: 'BarChartOutlined',
+              color: '#1890ff',
+            },
+          ],
+        },
+      ],
+      message: 'success',
+    });
+  }),
 ];

@@ -10,6 +10,9 @@ import Page403 from '@/pages/exception/403';
 import Page404 from '@/pages/exception/404';
 import DynamicRouteRenderer from './DynamicRouteRenderer';
 
+import PortalLayout from '@/layouts/PortalLayout';
+import PortalPage from '@/pages/demo/Portal';
+
 const router = createBrowserRouter(
   [
     // 无布局路由 — 登录、SSO 回调
@@ -19,6 +22,12 @@ const router = createBrowserRouter(
         { path: '/login', element: <LoginPage /> },
         { path: '/sso/callback', element: <SsoCallback /> },
       ],
+    },
+    // Portal 门户路由 (独立布局)
+    {
+      path: '/portal',
+      element: <PortalLayout />,
+      children: [{ index: true, element: <PortalPage /> }],
     },
     // 主布局路由 — 需要鉴权
     {
